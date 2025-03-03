@@ -152,7 +152,6 @@ export default function ChatBox({
           className="chatbox-affix"
           offsetTop={0}
           style={!showAffix ? { display: 'none' } : { width: 'calc(100% - 366px)' }}
-          // target={() => msgBoxRef.current!.nativeElement}
         >
           <Button type="link" onClick={msgBoxScrollToBottom}>
             返回底部
