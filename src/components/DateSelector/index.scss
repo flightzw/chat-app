@@ -1,0 +1,14 @@
+.date-selector-container {
+    width: 500px;
+
+    >div {
+        display: flex;
+    }
+
+    .date-selector-header {
+        >div {
+            margin: auto;
+            width: 200px;
+        }
+    }
+}

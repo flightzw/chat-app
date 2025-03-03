@@ -1,0 +1,116 @@
+.ant-modal {
+    .ant-modal-content {
+        padding: 10px;
+    }
+}
+
+.ant-list-items>div {
+    display: flex;
+}
+
+.modal-sidebar {
+    width: 200px;
+    padding-right: 10px;
+
+    .modal-sidebar-search {
+        height: 40px;
+        display: flex;
+        align-items: center;
+
+        .ant-input-outlined {
+            padding: 4px;
+            background-color: #FAFAFA;
+
+            >input {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .modal-sidebar-list {
+        height: 260px;
+        overflow-y: auto;
+
+        .modal-sidebar-listitem {
+            padding: 3px;
+
+            .ant-avatar {
+                margin-right: 6px;
+                width: 32px;
+            }
+
+            >div {
+                width: calc(100% - 38px);
+                line-height: 32px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .modal-sidebar-listitem:hover {
+            background-color: rgba($color: #C8C6C5, $alpha: 0.6);
+        }
+    }
+}
+
+.modal-content {
+    width: calc(100% - 200px);
+    height: 100%;
+
+    .ant-card {
+        height: 100%;
+
+        .ant-card-head {
+            height: 40px;
+            max-height: 40px;
+            min-height: 40px;
+            user-select: none;
+        }
+
+        .ant-card-body {
+            height: 280px;
+            padding: 10px 0px;
+
+            .ant-empty {
+                padding-top: 35px;
+            }
+        }
+
+        .ant-card-actions {
+            height: 40px;
+
+            >li {
+                margin: 10px 0;
+            }
+        }
+
+        .modal-content-avatar {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        .modal-content-table {
+            width: 100%;
+            padding: 10px 20px;
+            border-top: 1px solid #F0F0F0;
+
+            tr>td {
+                display: block;
+                padding: 3px;
+            }
+
+            .ant-descriptions-item-label {
+                width: 80px;
+                font-weight: bold;
+            }
+
+            .ant-descriptions-item-content {
+                width: calc(100% - 80px);
+                max-height: 100px;
+                overflow-y: scroll;
+            }
+        }
+    }
+}

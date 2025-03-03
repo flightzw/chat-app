@@ -1,0 +1,182 @@
+.chatpage-container {
+    height: max(100vh, 600px);
+}
+
+.chatpage-sidebar {
+    height: 100%;
+
+    .chatpage-sidebar-top {
+        height: 64px;
+        padding: 20px 10px 10px;
+        background-color: #F7F7F7;
+        box-sizing: border-box;
+        border-right: 2px solid #E7E7E7;
+
+        .ant-input-outlined {
+            width: 240px;
+            height: 34px;
+            background-color: #E2E2E2;
+
+            .ant-input-suffix>button {
+                width: 24px;
+                height: 24px;
+                padding: 0;
+            }
+        }
+
+        .chatpage-sidebar-top-btn {
+            width: 34px;
+            height: 34px;
+            background-color: #E2E2E2;
+        }
+    }
+
+    .chatpage-sidebar-list {
+        height: calc(100% - 64px);
+        overflow-y: scroll;
+        background-color: #E4E4E4;
+
+        .chatpage-sidebar-status {
+            .anticon {
+                font-size: 16px;
+                padding: 1px;
+                margin-right: 3px;
+            }
+
+            line-height: 18px;
+            color: #fff;
+            padding: 3px 10px;
+            width: 100%;
+            font-size: 10px;
+        }
+
+        .chatpage-sidebar-listitem {
+            padding: 10px;
+
+            .ant-badge .ant-badge-count {
+                box-shadow: none;
+            }
+
+            .listitem-body {
+                width: (calc(100% - 44px));
+                padding-left: 10px;
+
+                >div {
+                    height: 22px;
+                }
+            }
+
+            .listitem-header {
+                display: flex;
+                justify-content: space-between;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+
+                .listitem-header-time {
+                    font-size: 10px;
+                    color: #999999;
+                }
+            }
+
+            .listitem-content {
+                font-size: 12px;
+                display: flex;
+
+                color: #999999;
+
+                >div {
+                    height: 100%;
+                }
+
+                .listitem-lastmsg {
+                    width: 180px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        .chatpage-sidebar-listitem:hover {
+            background-color: rgba($color: #C8C6C5, $alpha: 0.6);
+        }
+    }
+}
+
+.chatpage-body {
+    height: 100%;
+
+    .chatpage-body-header {
+        background-color: #F5F5F5;
+        padding-left: 10px;
+        font-size: 1.2em;
+    }
+
+    .chatpage-body-content {
+        min-width: 500px;
+        height: calc(100vh - 64px);
+        background-color: #F5F5F5;
+        box-sizing: border-box;
+        border-top: 2px solid #E7E7E7;
+
+        .chatpage-message-box {
+            height: calc(100% - 200px);
+            padding: 0 20px;
+            overflow-y: scroll;
+
+
+            .message-item-timetips {
+                display: flex;
+                justify-content: center;
+                font-size: 10px;
+                line-height: 18px;
+                margin-bottom: 10px;
+
+                >span {
+                    padding: 0 3px;
+                    vertical-align: middle;
+                    color: #fff;
+                    background-color: #DADADA;
+                    border-radius: 3px;
+                }
+            }
+
+            .message-item-bubble {
+                background-color: #fff;
+            }
+
+            .message-item-bubble-arrow-left::before,
+            .message-item-bubble-arrow-right::after {
+                border-right-color: #fff;
+                border-left-color: #fff;
+            }
+
+
+        }
+
+        .chatpage-message-input {
+            height: 200px;
+            padding: 5px 20px;
+            box-sizing: border-box;
+            border-top: 2px solid #E7E7E7;
+        }
+
+        .chatpage-empty-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E7E7E7;
+}
