@@ -21,7 +21,7 @@ jobs:
       - name: Login to Docker Registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.REGISTER }}
+          registry: ${{ vars.REGISTER }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -31,5 +31,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTER }}/${{ env.NAMESPACE }}/chat-app:latest
-            ${{ env.REGISTER }}/${{ env.NAMESPACE }}/chat-app:${{ env.SHORT_SHA }}
+            ${{ vars.REGISTER }}/${{ vars.NAMESPACE }}/chat-app:latest
+            ${{ vars.REGISTER }}/${{ vars.NAMESPACE }}/chat-app:${{ env.SHORT_SHA }}
