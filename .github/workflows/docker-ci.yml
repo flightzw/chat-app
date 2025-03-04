@@ -17,9 +17,9 @@ jobs:
       - name: Generate Short SHA
         run: |
           echo "SHORT_SHA=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
-          echo "REGISTER=${vars.REGISTER}"
-          echo "NAMESPACE=${vars.NAMESPACE}"
-          echo "SHORT_SHA=${env.SHORT_SHA}"
+          echo "REGISTER: ${vars.REGISTER}"
+          echo "NAMESPACE: ${vars.NAMESPACE}"
+          echo "SHORT_SHA: ${env.SHORT_SHA}"
 
       - name: Login to Docker Registry
         uses: docker/login-action@v3
