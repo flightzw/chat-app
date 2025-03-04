@@ -14,6 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Generate Short SHA
+        run: |
+          echo "SHORT_SHA=${GITHUB_SHA:0:7}" >> $GITHUB_ENV
+
       - name: Login to Docker Registry
         uses: docker/login-action@v3
         with:
@@ -28,4 +32,4 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTER }}/${{ env.NAMESPACE }}/chat-app:latest
-            ${{ env.REGISTER }}/${{ env.NAMESPACE }}/chat-app:${{ github.sha:0:7 }}
+            ${{ env.REGISTER }}/${{ env.NAMESPACE }}/chat-app:${{ env.SHORT_SHA }}
