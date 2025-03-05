@@ -19,7 +19,7 @@
 ├── components
 │ ├── AddFriendModal     # 添加好友对话框
 │ │ └── index.tsx
-│ ├── AuthRoute.tsx	     # 路由拦截组件，检查是否已获取 token
+│ ├── AuthRoute.tsx      # 路由拦截组件，检查是否已获取 token
 │ ├── Chat               # 聊天模块组件
 │ │ ├── ChatBox          # 聊天窗口 + 输入框
 │ │ │ └── index.tsx
