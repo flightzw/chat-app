@@ -59,6 +59,8 @@
 │ │ └── index.tsx
 │ ├── Login              # 登录/注册
 │ │ └── index.tsx
+│ ├── NotFound           # 404 页
+│ │ └── index.tsx
 │ └── Setting            # 用户设置
 │ ├── UpdatePasswordForm.tsx  # 修改密码
 │ ├── UpdateUserInfoForm.tsx  # 更改个人信息
