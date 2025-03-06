@@ -7,6 +7,7 @@ import Layout from '@/pages/Layout';
 import Chat from '@/pages/Chat';
 import Friend from '@/pages/Friend';
 import Setting from '@/pages/Setting';
+import NotFound from '@/pages/NotFound';
 
 const router = createBrowserRouter(
   [
@@ -15,11 +16,11 @@ const router = createBrowserRouter(
       element: <Navigate to={'/login'} replace={true} />,
     },
     {
-      path: 'login',
+      path: '/login',
       element: <Login />,
     },
     {
-      path: 'home',
+      path: '/home',
       element: (
         <AuthRoute>
           <Layout />
@@ -46,9 +47,12 @@ const router = createBrowserRouter(
     },
     {
       path: '*',
-      element: <div>404 Not Found</div>,
+      element: <NotFound />,
     },
   ],
-  { future: { v7_relativeSplatPath: true } }
+  {
+    future: { v7_relativeSplatPath: true },
+    basename: `/${import.meta.env.VITE_APP_NAME}`,
+  }
 );
 export default router;
