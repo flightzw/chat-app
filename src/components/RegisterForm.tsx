@@ -82,7 +82,7 @@ export default function RegisterForm() {
       </Form.Item>
       <Form.Item>
         <Checkbox style={{ paddingBottom: 5 }} checked={fastLogin} onChange={() => setFastLogin(!fastLogin)}>
-          注册后登录
+          立刻登录
         </Checkbox>
         <Button block type="primary" htmlType="submit">
           注册

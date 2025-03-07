@@ -3,6 +3,12 @@
     width: max(100vw, 800px);
     height: max(100vh, 450px);
 
+    background-image: url('@/assets/images/01.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,4 +16,18 @@
 
 .login-card {
     height: 450px;
+    width: 360px;
+    background-color: rgba($color: #fff, $alpha: 0.8);
+    ;
+
+    .ant-input-affix-wrapper,
+    input:-internal-autofill-selected {
+        background-color: rgba($color: #fff, $alpha: 0.4);
+    }
+
+    .ant-card-head-title {
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+    }
 }

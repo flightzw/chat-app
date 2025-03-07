@@ -29,7 +29,7 @@ export default function Chat() {
   const boxRef = useRef<HTMLElement>(null);
   const [searchText, setSearchText] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  const [listHeight, setListHeight] = useState(300);
+  const [listHeight, setListHeight] = useState(631);
 
   const user = useStore((state) => state.user);
   const { friends } = useStore((state) => state.friendStore);
