@@ -75,13 +75,13 @@
         height: calc(100vh - 64px);
         background-color: #F5F5F5;
         display: flex;
-        padding-top: 80px;
         justify-content: center;
 
         box-sizing: border-box;
         border-top: 2px solid #E7E7E7;
 
         .friendpage-card {
+            margin-top: 80px;
             width: 600px;
 
             .friendpage-card-top {
@@ -158,6 +158,13 @@
                 background-color: rgba($color: #C8C6C5, $alpha: 0.6);
                 color: rgba(0, 0, 0, 0.45);
             }
+        }
+
+        .friendpage-empty-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     }
 }

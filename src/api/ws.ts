@@ -1,4 +1,5 @@
 import { clearTokenInfo } from '@/store/auth';
+import navigate from '@/utils/navigate';
 
 export enum ConnStatus {
   /** 等待连接 */
@@ -88,7 +89,7 @@ class ChatSocket {
       const { code } = recvInfo.data as AuthResult;
       if (code !== 401) {
         clearTokenInfo();
-        window.location.replace('/login'); // token 无效，返回登录页
+        navigate.replace('/login'); // token 无效，返回登录页
       }
       window.location.reload();
     };

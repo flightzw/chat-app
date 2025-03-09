@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { clearTokenInfo, getRefreshToken, getToken, saveTokenInfo } from '@/store/auth';
 import { refreshToken } from './user';
+import navigate from '@/utils/navigate';
 
 export type RespResult<T> = {
   data: T;
@@ -17,6 +18,7 @@ interface RetryAxiosRequestConfig<D = unknown> extends AxiosRequestConfig<D> {
 
 type retryRequest = () => void;
 
+const refreshURL = '/v1/refresh-token';
 const retryQueue: retryRequest[] = []; // 重试请求队列
 let isRefreshing = false; // token 续期标记
 
@@ -27,7 +29,7 @@ const request = axios.create({
 
 request.interceptors.request.use((config) => {
   const token = getToken();
-  if (config.url !== '/v1/refresh-token' && token) {
+  if (config.url !== refreshURL && token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -35,12 +37,19 @@ request.interceptors.request.use((config) => {
 
 request.interceptors.response.use(
   (resp) => resp.data,
-  async (err: AxiosError) => {
+  (err: AxiosError) => {
     const requestConfig = err.config as RetryAxiosRequestConfig;
     if (!requestConfig._retry) {
       requestConfig._retry = false;
     }
-    if (err.response?.status === 401 && getRefreshToken() !== '' && !requestConfig._retry) {
+    console.log(requestConfig.url, err.response?.status, getRefreshToken() !== '', requestConfig._retry);
+
+    if (
+      requestConfig.url !== refreshURL &&
+      err.response?.status === 401 &&
+      getRefreshToken() !== '' &&
+      !requestConfig._retry
+    ) {
       if (isRefreshing) {
         return new Promise((resolve) => {
           retryQueue.push(() => resolve(request(requestConfig)));
@@ -48,23 +57,23 @@ request.interceptors.response.use(
       }
       requestConfig._retry = true;
       isRefreshing = true;
-
-      try {
-        const { data } = await refreshToken();
-        saveTokenInfo(data.token, data.refresh_token);
-        while (retryQueue.length > 0) {
-          const callback = retryQueue.shift() as retryRequest;
-          callback();
-        }
-        return request(requestConfig);
-      } catch (err) {
-        clearTokenInfo();
-        window.location.replace('/login');
-        window.location.reload();
-        return Promise.reject(err);
-      } finally {
-        isRefreshing = false;
-      }
+      refreshToken()
+        .then(({ data }) => {
+          saveTokenInfo(data.token, data.refresh_token);
+          while (retryQueue.length > 0) {
+            const callback = retryQueue.shift() as retryRequest;
+            callback();
+          }
+          return request(requestConfig);
+        })
+        .catch((err) => {
+          clearTokenInfo();
+          navigate.replace('/login');
+          return Promise.reject(err);
+        })
+        .finally(() => {
+          isRefreshing = false;
+        });
     }
     if (typeof err.response?.data === 'object' && err.response.data !== null) {
       return Promise.reject(err.response.data);
