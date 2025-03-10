@@ -142,7 +142,7 @@ export default function ChatBox({
   };
 
   const msgBoxScrollToBottom = () => {
-    msgBoxRef.current!.scrollTo(getListScrollHeight(msgBoxRef.current!.nativeElement));
+    msgBoxRef.current!.scrollTo({ index: chat.getMaxMsgId() });
   };
 
   return (
@@ -241,7 +241,7 @@ export default function ChatBox({
                   chat.draft.text
                     .trim()
                     .replace(/<br>/g, '')
-                    .replace(/<\/p><p>/g, '<br>')
+                    .replace(/<\/p><p>/g, '\n')
                 )
               );
               setTimeout(msgBoxScrollToBottom, 300);
@@ -274,7 +274,9 @@ const initMsgMenuClick = (msgID: number, content: string) => {
   return ({ key }: { key: string }) => {
     switch (key) {
       case 'copy':
-        navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([content], { type: 'text/html' }) })]);
+        navigator.clipboard.write([
+          new ClipboardItem({ 'text/html': new Blob([content.replace(/\n/g, '<br>')], { type: 'text/html' }) }),
+        ]);
         return;
       case 'recall':
         msgApi.recallPrivateMessage(msgID).catch((err) => errors.showHttpErrorMessageTips(err));

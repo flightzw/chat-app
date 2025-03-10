@@ -18,12 +18,7 @@ import './index.scss';
 import { newChatInfoByFriend } from '@/store/chat';
 import days from '@/utils/days';
 import errors from '@/utils/errors';
-import { FilterXSS } from 'xss';
-
-const lastMsgFilter = new FilterXSS({
-  whiteList: { img: ['src', 'class', 'alt'] },
-  stripIgnoreTag: true,
-});
+import strings from '@/utils/strings';
 
 export default function Chat() {
   const boxRef = useRef<HTMLElement>(null);
@@ -146,7 +141,7 @@ export default function Chat() {
                             className="listitem-lastmsg"
                             dangerouslySetInnerHTML={{
                               __html: emoji.replaceEmojiTag(
-                                lastMsgFilter.process(useDraft ? item.draft.text : item.getLastContent())
+                                strings.latestMsgFilter.process(useDraft ? item.draft.text : item.getLastContent())
                               ),
                             }}
                           />

@@ -8,7 +8,7 @@ const inputFilter = new FilterXSS({
 
 /** 聊天消息提交过滤 */
 const submitFilter = new FilterXSS({
-  whiteList: { img: ['alt', 'class', 'src'], br: [] },
+  whiteList: { img: ['alt', 'class', 'src'] },
   stripIgnoreTag: true,
   onTag: (tag, html) => {
     if (tag !== 'img') {
@@ -19,7 +19,13 @@ const submitFilter = new FilterXSS({
   },
 });
 
+const latestMsgFilter = new FilterXSS({
+  whiteList: { img: ['src', 'class', 'alt'] },
+  stripIgnoreTag: true,
+});
+
 export default {
   inputFilter,
   submitFilter,
+  latestMsgFilter,
 };

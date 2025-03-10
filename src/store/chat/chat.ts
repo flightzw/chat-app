@@ -1,4 +1,5 @@
 import { msgApi } from '@/api';
+import { escapeHtml } from 'xss';
 
 /** 会话类型 */
 export enum ChatType {
@@ -53,6 +54,7 @@ export class ChatInfo {
     // this.messageMap = new Map(this.messages.map((item) => [item.id, item]));
 
     for (const msg of msgs) {
+      msg.content = escapeHtml(msg.content);
       this.messages = [...this.messages, msg];
       this.messageMap.set(msg.id, msg);
       if (msg.send_id !== userID && msg.status <= msgApi.MessageStatus.Unread) {
@@ -94,6 +96,7 @@ export class ChatInfo {
     if (this.messageMap.has(msg.id)) {
       return false;
     }
+    msg.content = escapeHtml(msg.content);
     this.messages = [...this.messages, msg];
     this.messages.sort((a, b) => a.id - b.id);
     this.messageMap.set(msg.id, msg);

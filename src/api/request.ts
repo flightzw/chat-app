@@ -42,7 +42,6 @@ request.interceptors.response.use(
     if (!requestConfig._retry) {
       requestConfig._retry = false;
     }
-    console.log(requestConfig.url, err.response?.status, getRefreshToken() !== '', requestConfig._retry);
 
     if (
       requestConfig.url !== refreshURL &&
@@ -68,6 +67,7 @@ request.interceptors.response.use(
         })
         .catch((err) => {
           clearTokenInfo();
+          console.error('refresh token failed:', err);
           navigate.replace('/login');
           return Promise.reject(err);
         })
