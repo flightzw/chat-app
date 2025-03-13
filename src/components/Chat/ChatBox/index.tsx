@@ -177,7 +177,7 @@ export default function ChatBox({
               <div key={item.id}>
                 {showTimeTips && (
                   <div className="message-item-timetips no-select">
-                    <span>{days.formatSendTime(item.created_at)}</span>
+                    <span>{days.formatSendTime(item.created_at, true)}</span>
                   </div>
                 )}
                 {item.status === msgApi.MessageStatus.Recall ? (

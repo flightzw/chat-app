@@ -5,7 +5,7 @@ dayjs.extend(weekOfYear);
 
 const dateFormatStr = 'YYYY-MM-DD';
 
-function formatSendTime(timeStr: string) {
+function formatSendTime(timeStr: string, useDatetime = false) {
   if (!timeStr) {
     return '';
   }
@@ -13,11 +13,11 @@ function formatSendTime(timeStr: string) {
   const sendTime = dayjs(timeStr);
   const now = dayjs();
 
-  if (sendTime.isAfter(now.add(-60, 'second'))) {
+  if (!useDatetime && sendTime.isAfter(now.add(-60, 'second'))) {
     const diffval = now.second() - sendTime.second();
     return diffval === 0 ? '现在' : `${(now.second() + 60 - sendTime.second()) % 60}秒前`;
   }
-  if (sendTime.isAfter(now.add(-1801, 'second'))) {
+  if (!useDatetime && sendTime.isAfter(now.add(-1801, 'second'))) {
     return `${(now.minute() + 60 - sendTime.minute()) % 60}分钟前`;
   }
   if (sendTime.isAfter(dayjs(now.format(dateFormatStr)).add(-1, 'day').add(-1, 'second'))) {

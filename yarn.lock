@@ -238,16 +238,6 @@
   resolved "https://registry.npmmirror.com/@bufbuild/protobuf/-/protobuf-2.2.3.tgz"
   integrity sha512-tFQoXHJdkEOSwj5tRIZSPNUuXK3RaR7T1nUrPgbYX1pUbvqqaaZAsfo+NXBPsz5rZMSKVFrgK1WL8Q/MSLvprg==
 
-"@emoji-mart/data@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.npmmirror.com/@emoji-mart/data/-/data-1.2.1.tgz#0ad70c662e3bc603e23e7d98413bd1e64c4fcb6c"
-  integrity sha512-no2pQMWiBy6gpBEiqGeU77/bFejDqUTRY7KX+0+iur13op3bqUsXdnwoZs6Xb1zbv0gAj5VvS1PWoUUckSr5Dw==
-
-"@emoji-mart/react@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmmirror.com/@emoji-mart/react/-/react-1.1.1.tgz#ddad52f93a25baf31c5383c3e7e4c6e05554312a"
-  integrity sha512-NMlFNeWgv1//uPsvLxvGQoIerPuVdXwK/EUek8OOkJ6wVOWPUizRBJU0hDqWZCOROVpfBgCemaC3m6jDOXi03g==
-
 "@emotion/hash@^0.8.0":
   version "0.8.0"
   resolved "https://registry.npmmirror.com/@emotion/hash/-/hash-0.8.0.tgz"
@@ -750,11 +740,6 @@
   resolved "https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.15.tgz"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
-"@types/lodash@^4.17.15":
-  version "4.17.15"
-  resolved "https://registry.npmmirror.com/@types/lodash/-/lodash-4.17.15.tgz#12d4af0ed17cc7600ce1f9980cec48fc17ad1e89"
-  integrity sha512-w/P33JFeySuhN6JLkysYUK2gEmy9kHHFN7E8ro0tkfmlDOgxBDzWEZ/J8cWA+fHqFevpswDTFZnDx+R9lbL6xw==
-
 "@types/node@^22.10.5":
   version "22.10.5"
   resolved "https://registry.npmmirror.com/@types/node/-/node-22.10.5.tgz"
@@ -1134,11 +1119,6 @@ electron-to-chromium@^1.5.73:
   version "1.5.80"
   resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.80.tgz"
   integrity sha512-LTrKpW0AqIuHwmlVNV+cjFYTnXtM9K37OGhpe0ZI10ScPSxqVSryZHIY3WnCS5NSYbBODRTZyhRMS2h5FAEqAw==
-
-emoji-mart@^5.6.0:
-  version "5.6.0"
-  resolved "https://registry.npmmirror.com/emoji-mart/-/emoji-mart-5.6.0.tgz#71b3ed0091d3e8c68487b240d9d6d9a73c27f023"
-  integrity sha512-eJp3QRe79pjwa+duv+n7+5YsNhRcMl812EcFVwrnRvYKoNPoQb5qxU8DG6Bgwji0akHdp6D4Ln6tYLG58MFSow==
 
 esbuild@^0.24.2:
   version "0.24.2"
