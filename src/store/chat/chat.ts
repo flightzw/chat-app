@@ -7,6 +7,8 @@ export enum ChatType {
   Private = 1,
   /** 群聊 */
   Group,
+  /** AI */
+  AI,
 }
 
 export type DraftInfo = {
@@ -28,7 +30,7 @@ export type ChatParams = {
 export class ChatInfo {
   /** 会话 id（好友 id） */
   readonly id: number;
-  readonly type: ChatType = ChatType.Private;
+  readonly type: ChatType;
   /** 会话名称（好友昵称） */
   name: string;
   /** 会话头像 */
@@ -45,11 +47,19 @@ export class ChatInfo {
   /** 草稿 */
   draft: DraftInfo = { text: '', count: 0 };
 
-  constructor(chatID: number, avatarUrl: string, name: string, userID: number, ...msgs: msgApi.PrivateMessage[]) {
+  constructor(
+    chatID: number,
+    avatarUrl: string,
+    name: string,
+    userID: number,
+    type: ChatType,
+    ...msgs: msgApi.PrivateMessage[]
+  ) {
     this.id = chatID;
     this.avatarUrl = avatarUrl;
     this.name = name;
     this.userID = userID;
+    this.type = type;
     // this.messages = genMockMessage(chatID, userID);
     // this.messageMap = new Map(this.messages.map((item) => [item.id, item]));
 
@@ -84,7 +94,7 @@ export class ChatInfo {
     return this.messageMap.has(msgId);
   }
 
-  getMaxMsgId() {
+  getMaxMsgID() {
     if (this.messages.length < 1) {
       return 0;
     }

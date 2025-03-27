@@ -1,7 +1,13 @@
 import request, { RespResult } from './request';
 
+export enum UserType {
+  Normal = 1,
+  AI,
+}
+
 export type FriendInfo = {
   id: number;
+  type: UserType;
   username: string;
   avatar_url: string;
   nickname: string;

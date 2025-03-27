@@ -1,11 +1,12 @@
 import { msgApi } from '@/api';
 import localforage from 'localforage';
-import { ChatInfo } from './chat';
+import { ChatInfo, ChatType } from './chat';
 
 type chatInfo = {
   id: number;
   name: string;
   avatarUrl: string;
+  type: ChatType;
 };
 
 type chatStore = {
@@ -34,6 +35,7 @@ export async function getChatStore(userID: number): Promise<chatStore> {
 export function setChatStore(userID: number, maxMsgID: number, chats: ChatInfo[]) {
   const data: chatInfo[] = chats.map((chat) => ({
     id: chat.id,
+    type: chat.type,
     name: chat.name,
     avatarUrl: chat.avatarUrl,
   }));

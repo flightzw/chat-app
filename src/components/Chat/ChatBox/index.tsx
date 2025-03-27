@@ -74,7 +74,7 @@ export default function ChatBox({
     const scrollTop = msgBoxRef.current.getScrollInfo().y;
     const scrollHeight = getListScrollHeight(msgBoxRef.current.nativeElement);
     const bottomOffset = scrollHeight - scrollTop - listHeight;
-    if (bottomOffset > 10 && bottomOffset <= 100) {
+    if (bottomOffset > 10 && bottomOffset <= 200) {
       msgBoxRef.current.scrollTo({ top: scrollHeight });
     }
   }, [msgBoxRef, messages, listHeight]);
@@ -142,7 +142,7 @@ export default function ChatBox({
   };
 
   const msgBoxScrollToBottom = () => {
-    msgBoxRef.current!.scrollTo({ index: chat.getMaxMsgId() });
+    msgBoxRef.current!.scrollTo({ index: chat.getMaxMsgID() });
   };
 
   return (
@@ -277,6 +277,7 @@ const initMsgMenuClick = (msgID: number, content: string) => {
         navigator.clipboard.write([
           new ClipboardItem({ 'text/html': new Blob([content.replace(/\n/g, '<br>')], { type: 'text/html' }) }),
         ]);
+        message.info('已复制', 1);
         return;
       case 'recall':
         msgApi.recallPrivateMessage(msgID).catch((err) => errors.showHttpErrorMessageTips(err));

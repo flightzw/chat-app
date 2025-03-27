@@ -1,5 +1,5 @@
 import { msgApi } from '@/api';
-import { ChatInfo } from './chat';
+import { ChatInfo, ChatType } from './chat';
 import * as util from './util';
 import * as persist from './persist';
 
@@ -25,7 +25,7 @@ async function loadingChatData(userID: number): Promise<ChatCache> {
     for (const info of store.chats) {
       // 获取会话对应的消息数据
       const msgs = await persist.getMsgList(userID, info.id);
-      chats.push(new ChatInfo(info.id, info.avatarUrl, info.name, userID, ...msgs));
+      chats.push(new ChatInfo(info.id, info.avatarUrl, info.name, userID, info.type, ...msgs));
     }
     return { userID: userID, chats: chats, chatMap: util.newChatMap(chats), maxMsgID: store.maxMsgID };
   } catch (err) {
@@ -36,7 +36,7 @@ async function loadingChatData(userID: number): Promise<ChatCache> {
 
 function saveOrUpdateChatCache(cache: ChatCache, newChat: ChatInfo, data: msgApi.PrivateMessage) {
   // 更新最大消息 id
-  if (data.id > cache.maxMsgID) {
+  if (newChat.type !== ChatType.AI && data.id > cache.maxMsgID) {
     cache.maxMsgID = data.id;
   }
 

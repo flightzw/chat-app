@@ -139,11 +139,13 @@ const createChatState: StateCreator<ChatState> = (set) => ({
       } else {
         ok = chat.appendMessage(data);
       }
+
+      const newMaxMsgID = chat.type !== ChatType.AI && ok ? Math.max(maxMsgID, data.id) : maxMsgID;
       if (ok) {
-        persist.setChatStore(chat.userID, Math.max(maxMsgID, data.id), chats);
+        persist.setChatStore(chat.userID, newMaxMsgID, chats);
         persist.setMsgList(chat.userID, chat);
       }
-      return ok ? { chatStore: { ...state.chatStore, maxMsgID: Math.max(maxMsgID, data.id) } } : state;
+      return ok ? { chatStore: { ...state.chatStore, maxMsgID: newMaxMsgID } } : state;
     });
   },
   insertMessage: (chatId: number, data: msgApi.PrivateMessage) => {
@@ -153,9 +155,10 @@ const createChatState: StateCreator<ChatState> = (set) => ({
       if (!chat || !chat.appendMessage(data)) {
         return state;
       }
-      persist.setChatStore(chat.userID, Math.max(maxMsgID, data.id), chats);
+      const newMaxMsgID = chat.type !== ChatType.AI ? Math.max(maxMsgID, data.id) : maxMsgID;
+      persist.setChatStore(chat.userID, newMaxMsgID, chats);
       persist.setMsgList(chat.userID, chat);
-      return { chatStore: { ...state.chatStore, maxMsgID: Math.max(maxMsgID, data.id) } };
+      return { chatStore: { ...state.chatStore, maxMsgID: newMaxMsgID } };
     });
   },
   readedMessage: (chatId: number, selfReaded: boolean) => {
@@ -206,7 +209,13 @@ const createChatState: StateCreator<ChatState> = (set) => ({
 });
 
 export function newChatInfoByFriend(userID: number, friend: friendApi.FriendInfo) {
-  return new ChatInfo(friend.id, friend.avatar_url, friend.remark || friend.nickname, userID);
+  return new ChatInfo(
+    friend.id,
+    friend.avatar_url,
+    friend.remark || friend.nickname,
+    userID,
+    friend.type === friendApi.UserType.Normal ? ChatType.Private : ChatType.AI
+  );
 }
 
 export default createChatState;

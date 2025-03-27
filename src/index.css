@@ -18,3 +18,7 @@ body {
   display: inline-block;
   vertical-align: text-bottom;
 }
+
+.ant-avatar {
+  background-color: #74b9ff;
+}

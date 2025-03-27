@@ -4,6 +4,7 @@ export enum MessageType {
   Text = 1,
   Image,
   File,
+  AIChat = 7,
 }
 
 export enum MessageStatus {

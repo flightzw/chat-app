@@ -1,7 +1,10 @@
 import { Avatar, Dropdown, MenuProps } from 'antd';
-
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import Markdown from 'react-markdown';
 import { ChatMember } from '../model';
 
+import 'katex/dist/katex.min.css'; // `rehype-katex` does not import the CSS for you
 import './index.scss';
 
 type MessageItemProps = {
@@ -27,8 +30,11 @@ export default function MessageItem({ leftAlign, showName, sender, menu, readed,
           <div
             style={{ backgroundColor: leftAlign ? '#fff' : '#89D961' }}
             className={`message-item-bubble message-item-bubble-arrow-${leftAlign ? 'left' : 'right'}`}
-            dangerouslySetInnerHTML={{ __html: content }}
-          />
+          >
+            <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+              {content}
+            </Markdown>
+          </div>
         </Dropdown>
         {!leftAlign && (
           <div className={`message-item-readtips no-select ${readed ? 'msg-readed' : ''}`}>
