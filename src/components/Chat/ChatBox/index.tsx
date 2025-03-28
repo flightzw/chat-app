@@ -190,6 +190,7 @@ export default function ChatBox({
                     leftAlign={item.send_id !== chat.userID}
                     sender={sender}
                     content={content}
+                    useMarkDown={item.type === msgApi.MessageType.AIChat}
                     menu={{
                       items: initMsgMenuItems(chat.userID, item),
                       onClick: initMsgMenuClick(item.id, content),

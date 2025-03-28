@@ -106,6 +106,9 @@ export class ChatInfo {
     if (this.messageMap.has(msg.id)) {
       return false;
     }
+    if (this.type === ChatType.AI) {
+      msg.id = this.getMaxMsgID() + 1;
+    }
     msg.content = escapeHtml(msg.content);
     this.messages = [...this.messages, msg];
     this.messages.sort((a, b) => a.id - b.id);

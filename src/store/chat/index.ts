@@ -139,8 +139,7 @@ const createChatState: StateCreator<ChatState> = (set) => ({
       } else {
         ok = chat.appendMessage(data);
       }
-
-      const newMaxMsgID = chat.type !== ChatType.AI && ok ? Math.max(maxMsgID, data.id) : maxMsgID;
+      const newMaxMsgID = chat.type !== ChatType.AI ? Math.max(maxMsgID, data.id) : maxMsgID;
       if (ok) {
         persist.setChatStore(chat.userID, newMaxMsgID, chats);
         persist.setMsgList(chat.userID, chat);

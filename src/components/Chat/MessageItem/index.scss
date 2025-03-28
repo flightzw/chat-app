@@ -41,8 +41,18 @@
             overflow-wrap: break-word;
 
             p {
-                margin: 5px;
+                margin: 5px 0;
             }
+        }
+
+        .message-item-bubble-md {
+            display: inline-block;
+            background: #fff799;
+            padding: 10px 10px;
+            margin: 1.5px 10px;
+            border-radius: 8px;
+            position: relative;
+            font-size: 16px;
         }
 
         .message-item-readtips {
